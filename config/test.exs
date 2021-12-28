@@ -7,20 +7,20 @@ use Mix.Config
 # Run `mix help test` for more information.
 config :rockelivery, Rockelivery.Repo,
   username: "postgres",
-  password: "postgres123",
+  password: "postgres",
   database: "rockelivery_test#{System.get_env("MIX_TEST_PARTITION")}",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
 
 # Configure the database to GitHub Actions
-if System.get_env("GITHUB_ACTIONS") do
-  config :rockelivery, Rockelivery.Repo,
-    username: "postgres",
-    password: "postgres",
-    database: "rockelivery_test#{System.get_env("MIX_TEST_PARTITION")}",
-    hostname: "localhost",
-    pool: Ecto.Adapters.SQL.Sandbox
-end
+# if System.get_env("GITHUB_ACTIONS") do
+#   config :rockelivery, Rockelivery.Repo,
+#     username: "postgres",
+#     password: "postgres",
+#     database: "rockelivery_test#{System.get_env("MIX_TEST_PARTITION")}",
+#     hostname: "localhost",
+#     pool: Ecto.Adapters.SQL.Sandbox
+# end
 
 config :rockelivery, Rockelivery.Users.Create, via_cep_adapter: Rockelivery.ViaCep.ClientMock
 
